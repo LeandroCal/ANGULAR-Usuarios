@@ -1,0 +1,26 @@
+<h3 class="mt-5">Usuario <small>{{ usuario.nombre }}</small></h3>
+<button [routerLink]="['usuarios']" type="button" class="btn btn-outline-danger">Volver</button>
+<button (click)="agregarUsuario(forma)" type="button" class="btn btn-outline-success ml-3">Nuevo usuario</button>
+<hr class="mb-5">
+
+<div class="row">
+    <div class="col-12">
+        <form (ngSubmit)="guardar()" #forma="ngForm">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input [(ngModel)]="usuario.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
+            </div>
+            <div class="form-group">
+                <label>Correo</label>
+                <input [(ngModel)]="usuario.correo" name="correo" type="text" class="form-control" placeholder="Correo" required>
+            </div>
+            <div class="form-group">
+                <label>Número de pie</label>
+                <input [(ngModel)]="usuario.pie" name="pie" type="text" class="form-control" placeholder="Número de pie" required>
+            </div>
+            <div class="form-group">
+                <button [disabled]="!forma.valid" type="submit" class="btn btn-outline-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>

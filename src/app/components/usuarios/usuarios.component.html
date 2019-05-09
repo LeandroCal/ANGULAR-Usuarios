@@ -1,0 +1,45 @@
+<h1 class="mt-5">Usuarios</h1>
+<hr class="mb-5">
+
+<div class="row mb-5">
+    <div class="col-12 text-right">
+        <button [routerLink]="['/usuario','nuevo']" class="btn btn-outline-primary" type="button">Añadir usuario</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <table class="table text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Número de pie</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let k of usuarios | keys; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{usuarios[k].nombre}}</td>
+                    <td>{{usuarios[k].correo}}</td>
+                    <td>{{usuarios[k].pie}}</td>
+                    <td>
+                        <button [routerLink]="['/usuario',k]" type="button" class="btn btn-outline-warning">Editar</button>
+                        <button (click)="eliminarUsuario(k)" type="button" class="btn btn-outline-danger ml-3">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div *ngIf="(usuarios | keys).length == 0 && !loading" class="alert alert-info" role="alert">
+            <strong>No hay</strong> registros que mostrar
+        </div>
+
+        <div *ngIf="loading" class="alert alert-warning" role="alert">
+            <strong>Cargando...</strong> por favor espere
+        </div>
+
+    </div>
+</div>
